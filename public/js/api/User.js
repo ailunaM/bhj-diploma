@@ -38,7 +38,12 @@ class User {
   static fetch(callback) {
     createRequest({
       method: 'GET',
-      callback: callback,
+      callback: (err, response) => {
+        if (response && response.user) {
+          this.setCurrent(response.user);
+        }
+        callback(err, response);
+      },
     });
   }
 

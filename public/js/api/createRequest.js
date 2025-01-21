@@ -18,29 +18,33 @@ const createRequest = (options = {}) => {
   const xhr = new XMLHttpRequest();
   xhr.responseType = 'json';
   const url = options.url;
-  if (options.method === 'GET') {
-    const data = options.data;
-    const url = convertUrl(data, url);
-    xhr.open('GET', url);
-    xhr.send();
-  }
 
-  if (options.method === 'POST' || options.method === 'DELETE') {
-    const formData = new FormData();
-    for (let key in data) {
-      formData.append(`${key}, ${data[key]}`);
+  try {
+    if (options.method === 'GET') {
+      const data = options.data;
+      const url = convertUrl(data, url);
+      xhr.open('GET', url);
+      xhr.send();
     }
-    xhr.open(options.method, url);
-    xhr.send(formData);
+
+    if (options.method === 'POST' || options.method === 'DELETE') {
+      const formData = new FormData();
+      for (let key in data) {
+        formData.append(`${key}, ${data[key]}`);
+      }
+      xhr.open(options.method, url);
+      xhr.send(formData);
+    }
+
+    const callback = options.callback;
+    xhr.upload.onload = function () {
+      callback(null, xhr.response);
+    };
+
+    // xhr.upload.onerror = function() {
+    //   callback(`Ошибка ${xhr.status}: ${xhr.statusText}`)
+    // };
+  } catch (e) {
+    callback(e);
   }
-
- const callback = options.callback
-  xhr.upload.onload = function() {
-    callback(null, xhr.response)
-  };
-  
-  xhr.upload.onerror = function() {
-    callback(`Ошибка ${xhr.status}: ${xhr.statusText}`)
-  };
-
 };
