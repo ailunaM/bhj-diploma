@@ -16,6 +16,7 @@ const convertUrl = (data = {}, optionUrl) => {
 
 const createRequest = (options = {}) => {
   const xhr = new XMLHttpRequest();
+  xhr.responseType = 'json';
   const url = options.url;
   if (options.method === 'GET') {
     const data = options.data;
@@ -24,12 +25,22 @@ const createRequest = (options = {}) => {
     xhr.send();
   }
 
-  if (options.method === 'POST') {
+  if (options.method === 'POST' || options.method === 'DELETE') {
     const formData = new FormData();
     for (let key in data) {
       formData.append(`${key}, ${data[key]}`);
     }
-    xhr.open('POST', url);
+    xhr.open(options.method, url);
     xhr.send(formData);
   }
+
+ const callback = options.callback
+  xhr.upload.onload = function() {
+    callback(null, xhr.response)
+  };
+  
+  xhr.upload.onerror = function() {
+    callback(`Ошибка ${xhr.status}: ${xhr.statusText}`)
+  };
+
 };
