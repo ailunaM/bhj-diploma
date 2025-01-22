@@ -27,7 +27,7 @@ class Modal {
   registerEvents() {
     const closeElements = this.element.querySelectorAll('[data-dismiss="modal"]');
     closeElements.forEach((element) => {
-      this.element.addEventListener('click', (e) => {
+      element.addEventListener('click', (e) => {
         this.onClose(e);
       });
     });
@@ -56,5 +56,3 @@ class Modal {
     this.element.style.display = '';
   }
 }
-const element = 
-  modal = new Modal( element );
