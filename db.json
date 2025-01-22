@@ -66,6 +66,11 @@
       "name": "optima",
       "user_id": "15ht3s91neom67usd40",
       "id": "15ht3s91sigm67y9a17"
+    },
+    {
+      "name": "rska",
+      "user_id": "15ht3s91neom67usd40",
+      "id": "15ht3s91quom684yoh4"
     }
   ],
   "transactions": [
@@ -203,6 +208,24 @@
       "sum": 300000,
       "type": "expense",
       "user_id": "1"
+    },
+    {
+      "id": "15ht3s91yqcm685hgr1",
+      "type": "income",
+      "name": "зарплата",
+      "sum": 40000,
+      "account_id": "15ht3s921egm67xgfz4",
+      "user_id": "15ht3s91neom67usd40",
+      "created_at": "2025-01-22T17:00:46.476Z"
+    },
+    {
+      "id": "15ht3s920ykm685i5qk",
+      "type": "expense",
+      "name": "Шаурма",
+      "sum": 300,
+      "account_id": "15ht3s921egm67xgfz4",
+      "user_id": "15ht3s91neom67usd40",
+      "created_at": "2025-01-22T17:01:18.859Z"
     }
   ]
 }
