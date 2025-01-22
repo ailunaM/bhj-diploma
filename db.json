@@ -46,6 +46,26 @@
       "name": "Бизнес",
       "user_id": "1",
       "id": "3"
+    },
+    {
+      "name": "симбанк",
+      "user_id": "15ht3s91neom67usd40",
+      "id": "15ht3s921egm67xgfz4"
+    },
+    {
+      "name": "мбанк",
+      "user_id": "15ht3s91neom67usd40",
+      "id": "15ht3s91cocm67xhgfp"
+    },
+    {
+      "name": "kicb",
+      "user_id": "15ht3s91neom67usd40",
+      "id": "15ht3s91z5om67y8pjz"
+    },
+    {
+      "name": "optima",
+      "user_id": "15ht3s91neom67usd40",
+      "id": "15ht3s91sigm67y9a17"
     }
   ],
   "transactions": [

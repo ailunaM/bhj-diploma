@@ -23,12 +23,10 @@ const createRequest = (options = {}) => {
 
   try {
     if (options.method === 'GET') {
-      const url = convertUrl(data, url);
-      xhr.open('GET', url);
+      const convertedUrl = convertUrl(data, url);
+      xhr.open('GET', convertedUrl);
       xhr.send();
-    }
-
-    if (options.method === 'POST' || options.method === 'DELETE') {
+    } else {
       const formData = new FormData();
       for (let key in data) {
         formData.append(key, data[key]);
