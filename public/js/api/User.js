@@ -80,6 +80,7 @@ class User {
       data: data,
       method: 'POST',
       callback: (err, response) => {
+        console.log(response);
         if (response && response.user) {
           this.setCurrent(response.user);
         }

@@ -18,10 +18,11 @@ const createRequest = (options = {}) => {
   const xhr = new XMLHttpRequest();
   xhr.responseType = 'json';
   const url = options.url;
+  const callback = options.callback;
+  const data = options.data;
 
   try {
     if (options.method === 'GET') {
-      const data = options.data;
       const url = convertUrl(data, url);
       xhr.open('GET', url);
       xhr.send();
@@ -30,20 +31,19 @@ const createRequest = (options = {}) => {
     if (options.method === 'POST' || options.method === 'DELETE') {
       const formData = new FormData();
       for (let key in data) {
-        formData.append(`${key}, ${data[key]}`);
+        formData.append(key, data[key]);
       }
       xhr.open(options.method, url);
       xhr.send(formData);
     }
 
-    const callback = options.callback;
-    xhr.upload.onload = function () {
+    xhr.onload = function () {
       callback(null, xhr.response);
     };
 
-    // xhr.upload.onerror = function() {
-    //   callback(`Ошибка ${xhr.status}: ${xhr.statusText}`)
-    // };
+    xhr.onerror = function () {
+      callback(`Ошибка ${xhr.status}: ${xhr.statusText}`);
+    };
   } catch (e) {
     callback(e);
   }
